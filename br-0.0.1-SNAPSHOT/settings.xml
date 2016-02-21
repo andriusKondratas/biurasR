@@ -1,0 +1,31 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                          http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<profiles>
+		<profile>
+			<id>dev1</id>
+			<properties>
+				<jdbc.url>jdbc:oracle:thin:@localhost:1521:xe</jdbc.url>
+				<jdbc.username>dev1</jdbc.username>
+				<jdbc.password>dev1</jdbc.password>
+				<tomcat.server.host.port>localhost:8080</tomcat.server.host.port>
+				<environment.type>dev</environment.type>
+				<environment.name>Development1</environment.name>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev2</id>
+			<properties>
+				<jdbc.url>jdbc:oracle:thin:@localhost:1521:xe</jdbc.url>
+				<jdbc.username>dev2</jdbc.username>
+				<jdbc.password>dev2</jdbc.password>
+				<tomcat.server.host.port>localhost:8080</tomcat.server.host.port>
+				<environment.type>dev</environment.type>
+				<environment.name>Development2</environment.name>
+			</properties>
+		</profile>
+	</profiles>
+	<activeProfiles>
+		<activeProfile>dev1</activeProfile>
+	</activeProfiles>
+</settings>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<p:layout stateful="false" style="padding-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important;">
+	<p:layoutUnit position="north" style="padding-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important;border:none !important;">
+		<p:toolbar>
+			<f:facet name="left">
+				<table cellpadding="0" cellspacing="0">
+					<tr>
+						<td rowspan="2"><p:graphicImage url="/resources/images/izdis_logo_transparent2.png" height="50px" width="50px" /></td>
+						<td align="left" style="vertical-align: bottom;"><h:outputText style="font-family:font-family:Arial, Helvetica, sans-serif;font-size: 2em;"
+								value="IŽDIS" escape="true" /></td>
+					</tr>
+					<tr>
+						<td style="vertical-align: top;"><h:outputText styleClass="outputTextEmpha" style="font-family:Arial, Helvetica, sans-serif"
+								value="Žuvininkystės tarnyba prie Lietuvos Respublikos Žemės ūkio ministerijos" escape="true" /></td>
+					</tr>
+				</table>
+			</f:facet>
+		</p:toolbar>
+	</p:layoutUnit>
+	<p:layoutUnit position="center" size="60%"
+		style="padding-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important;border: none !important;">
+		<c:if test="#{loginMB.authenticated}">
+		  <h:form id="breadCrumbForm" showDetail="true">
+			<p:breadCrumb model="#{menuMB.breadCrumbModel}" styleClass="blankToolbar" style="border-bottom:none !important;" />
+		 </h:form>	
+		</c:if>
+	</p:layoutUnit>
+	<p:layoutUnit position="east" size="40%"
+		style="padding-top:0px !important;padding-bottom:0px !important;margin-bottom:0px !important;border: none !important;text-align: right !important;">
+		<p:outputPanel layout="grid">
+			<h:form id="headerForm" showDetail="true">
+				<c:if test="#{empty loginMB.userList}">
+					<p:commandLink style="font-family:Arial;color:#000000;text-decoration:none;font-weight:bold;margin-right:10px;"
+						value="#{msg['menuForm.submenu.administration.item.createTestData']}" update=":menuForm,:menuForm:growl" action="#{loginMB.install}" />
+				</c:if>
+				<c:if test="#{loginMB.authenticated}">
+					<h:outputText value="Sveiki!&nbsp;" />
+					<h:outputText value="#{loginMB.loggedUser}" />
+				</c:if>
+				<p:selectOneMenu value="#{localeBean.language}" style="margin-left:10px" onchange="submit()">
+					<f:selectItem itemValue="lt" itemLabel="#{msg['common.language.lt']}" />
+					<f:selectItem itemValue="en" itemLabel="#{msg['common.language.en']}" />
+				</p:selectOneMenu>
+				<p:themeSwitcher style="margin-left:10px;margin-right:10px" effect="fade" id="defaultSwitcher" value="#{themeSwitcherMB.theme}">
+					<f:selectItem itemLabel="Pasirikite temą" itemValue="" />
+					<f:selectItems value="#{themeSwitcherMB.themes}" />
+					<p:ajax global="false" listener="#{themeSwitcherMB.saveTheme}" />
+				</p:themeSwitcher>
+				<c:if test="#{loginMB.authenticated}">
+					<p:commandLink action="#{loginMB.logout}" styleClass="customNavLink">
+						<h:outputText styleClass="fa fa-fw fa-sign-out fa-2x" value="&nbsp;" />
+					</p:commandLink>
+				</c:if>
+			</h:form>
+		</p:outputPanel>
+	</p:layoutUnit>
+</p:layout>
+</html>

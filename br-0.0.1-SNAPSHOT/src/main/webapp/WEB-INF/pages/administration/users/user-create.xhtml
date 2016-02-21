@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" template="/templates/mainTemplate.xhtml"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	<ui:define name="title">Naudotojo kūrimas / redagavimas</ui:define>
+	<ui:define name="body">
+	   <f:metadata>
+			<f:viewAction phase="APPLY_REQUEST_VALUES" action="#{userEditMB.loadModel}" />
+		</f:metadata>
+		<p:outputPanel>
+			<h:form id="userCreateForm">
+				<p:toolbar styleClass="blankToolbar">
+					<f:facet name="left">
+						<p:commandButton value="Išsaugoti" action="#{userEditMB.save}" update=":userCreateForm" icon="fa fa-fw fa-save"
+							disabled="#{userEditMB.objectState.anyOf('UNKNOWN')}" />
+						<p:commandButton value="Pašalinti" action="#{userEditMB.delete}" update=":userCreateForm" icon="fa fa-fw fa-remove"
+							disabled="#{userEditMB.objectState.anyOf('NEW','UNKNOWN')}" />
+						<span class="ui-separator"> <span class="ui-icon ui-icon-grip-dotted-vertical" /></span>
+						<p:commandButton value="Atšauktixxxxxxxxxxxxxxxxxxx" actionListener="#{userEditMB.goBack}" oncomplete="handleGoBackRequest(xhr, status, args)"
+							icon="fa fa-fw fa-step-backward" />
+					</f:facet>
+				</p:toolbar>
+				<p:messages showDetail="true" closable="false" showIcon="false" showSummary="false"></p:messages>
+				<p:fieldset legend="Naudotojo duomenys">
+					<p:panelGrid columns="4" styleClass="ui-panelgrid-blank">
+
+
+                        <p:outputLabel for="email" value="El. Paštas:" />
+						<p:inputText id="email" value="#{userEditMB.user.email}" required="true" maxlength="50"/>
+
+						<p:outputLabel for="password" value="Slaptažodis:" />
+						<p:password id="password" value="#{userEditMB.password}" valueChangeListener="#{userEditMB.destroyPassword}" maxlength="50"  required="#{userEditMB.objectState.anyOf('NEW','UNKNOWN')}" feedback="true" match="passwordMatch"/>
+						
+						<p:outputLabel for="name" value="Vardas:" />
+						<p:inputText id="name" value="#{userEditMB.user.name}" required="true" maxlength="50"/>
+						
+						<p:outputLabel for="passwordMatch" value="Pakartoti slaptažodį:" />
+						<p:password id="passwordMatch" value="#{userEditMB.passwordMatch}" maxlength="50"  required="#{userEditMB.objectState.anyOf('NEW','UNKNOWN')}" />
+
+						<p:outputLabel for="lastname" value="Pavardė:" />
+						<p:inputText id="lastname" value="#{userEditMB.user.lastname}" required="true" maxlength="50"/>
+						
+						<p:outputLabel for="phoneNumber" value="Telefonas:" />
+						<p:inputText id="phoneNumber" value="#{userEditMB.user.phoneNumber}" maxlength="50"/>
+						
+						<p:outputLabel for="jobTitle" value="Pareigos:" />
+						<p:inputText id="jobTitle" value="#{userEditMB.user.jobTitle}" maxlength="100"/>
+						
+						<p:outputLabel for="fidesId" value="FIDES ID:" />
+						<p:inputText id="fidesId" value="#{userEditMB.user.fidesId}" maxlength="20"/>
+						
+						<p:outputLabel for="active" value="Aktyvus:" />
+						<p:selectBooleanCheckbox id="active" value="#{userEditMB.user.active}">
+						  <f:converter converterId="javax.faces.Boolean" />
+						</p:selectBooleanCheckbox>
+						
+						
+					</p:panelGrid>
+					
+					<p:panelGrid columns="1" styleClass="ui-panelgrid-blank">
+					   	<p:outputLabel for="comments" value="Pastabos:" />
+						<p:inputTextarea id="comments" rows="3" cols="77" label="Pastabos" counter="display"  required="#{userEditMB.objectState.anyOf('OLD','UNKNOWN')}"  maxlength="255" counterTemplate="liko {0} simboliai."
+							value="#{userEditMB.user.comments}" autoResize="false" />
+						<h:outputText id="display" />
+					</p:panelGrid>
+					
+				</p:fieldset>
+				<p:fieldset legend="Naudotojo rolės">
+					<p:panelGrid columns="1" styleClass="ui-panelgrid-blank">
+						<p:selectManyCheckbox id="regions" value="#{userEditMB.selectedRoles}">
+							<f:selectItems value="#{userEditMB.allRoles}" />
+						</p:selectManyCheckbox>
+					</p:panelGrid>
+				</p:fieldset>
+				<p:spacer height="10" />
+				<p:toolbar styleClass="blankToolbar">
+					<f:facet name="left">
+						<p:commandButton value="Išsaugoti" action="#{userEditMB.save}" update=":userCreateForm" icon="fa fa-fw fa-save"
+							disabled="#{userEditMB.objectState.anyOf('UNKNOWN')}" />
+						<p:commandButton value="Pašalinti" action="#{userEditMB.delete}" update=":userCreateForm" icon="fa fa-fw fa-remove"
+							disabled="#{userEditMB.objectState.anyOf('NEW','UNKNOWN')}" />
+						<span class="ui-separator"> <span class="ui-icon ui-icon-grip-dotted-vertical" /></span>
+						<p:commandButton value="Atšaukti" actionListener="#{userEditMB.goBack}" oncomplete="handleGoBackRequest(xhr, status, args)"
+							icon="fa fa-fw fa-step-backward" />
+					</f:facet>
+				</p:toolbar>
+			</h:form>
+		</p:outputPanel>
+	</ui:define>
+</ui:composition>

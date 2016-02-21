@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" template="/templates/mainTemplate.xhtml"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	<ui:define name="title">Rolės kūrimas / redagavimas</ui:define>
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewAction phase="APPLY_REQUEST_VALUES" action="#{roleEditMB.loadModel}" />
+		</f:metadata>
+		<p:outputPanel>
+			<h:form id="roleCreateForm">
+				<p:toolbar styleClass="blankToolbar">
+					<f:facet name="left">
+						<p:commandButton value="Išsaugoti" action="#{roleEditMB.save}" update=":roleCreateForm" icon="fa fa-fw fa-save"
+							disabled="#{roleEditMB.objectState.anyOf('UNKNOWN')}" />
+						<p:commandButton value="Pašalinti" action="#{roleEditMB.delete}" update=":roleCreateForm" icon="fa fa-fw fa-remove"
+							disabled="#{roleEditMB.objectState.anyOf('NEW','UNKNOWN')}" />
+						<span class="ui-separator"> <span class="ui-icon ui-icon-grip-dotted-vertical" /></span>
+						<p:commandButton value="Atšaukti" actionListener="#{roleEditMB.goBack}" oncomplete="handleGoBackRequest(xhr, status, args)"
+							icon="fa fa-fw fa-step-backward" />
+					</f:facet>
+				</p:toolbar>
+				<p:messages showDetail="true" closable="false" showIcon="false" showSummary="false"></p:messages>
+				<p:panel>
+					<p:panelGrid columns="2" styleClass="ui-panelgrid-blank">
+						<p:outputLabel for="roleTitle" value="Rolės pavadinimas:" />
+						<p:inputText id="roleTitle" value="#{roleEditMB.role.roleTitle}" required="true" maxlength="50" />
+						<p:outputLabel for="comments" value="Rolės aprašymas:" />
+						<p:inputTextarea id="comments" rows="3" cols="77" label="Pastabos" counter="display" required="#{roleEditMB.objectState.anyOf('OLD','UNKNOWN')}"
+							maxlength="255" counterTemplate="liko {0} simboliai." value="#{roleEditMB.role.comments}" autoResize="false" />
+						<h:outputText id="display" />
+					</p:panelGrid>
+				</p:panel>
+				<p:spacer height="10" />
+				<p:treeTable value="#{roleEditMB.rolePriviledges}" var="priv" selectionMode="checkbox" selection="#{roleEditMB.selectedRolePriviledges}" style="width:50%">
+					<p:column headerText="Rolės privilegijos">
+						<h:outputText value="#{priv.name}" styleClass="#{priv.styleClass}" />
+					</p:column>
+				</p:treeTable>
+				<p:spacer height="10" />
+				<p:toolbar styleClass="blankToolbar">
+					<f:facet name="left">
+						<p:commandButton value="Išsaugoti" action="#{roleEditMB.save}" update=":roleCreateForm" icon="fa fa-fw fa-save"
+							disabled="#{roleEditMB.objectState.anyOf('UNKNOWN')}" />
+						<p:commandButton value="Pašalinti" action="#{roleEditMB.delete}" update=":roleCreateForm" icon="fa fa-fw fa-remove"
+							disabled="#{roleEditMB.objectState.anyOf('NEW','UNKNOWN')}" />
+						<span class="ui-separator"> <span class="ui-icon ui-icon-grip-dotted-vertical" /></span>
+						<p:commandButton value="Atšaukti" actionListener="#{roleEditMB.goBack}" oncomplete="handleGoBackRequest(xhr, status, args)"
+							icon="fa fa-fw fa-step-backward" />
+					</f:facet>
+				</p:toolbar>
+			</h:form>
+		</p:outputPanel>
+	</ui:define>
+</ui:composition>

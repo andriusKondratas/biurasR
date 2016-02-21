@@ -1,0 +1,219 @@
+/*PrimeFaces*/
+.ui-widget {
+	font-size: 0.92em !important;
+	border-radius: 0px !important;
+	font-family: Verdana, Arial, sans-serif !important;
+}
+
+.ui-widget-content {
+	color: #2E6E9E! important;
+}
+
+.ui-inputfield {
+	box-shadow: 0px 0px 0px !important;
+	color: #222 !important;
+}
+
+.ui-corner-all {
+	border-radius: 0px;
+}
+
+.ui-corner-top {
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
+
+.ui-panelgrid {
+	margin-bottom: 0.6em;
+}
+
+
+.ui-panelgrid.ui-panelgrid-blank .ui-panelgrid-content.ui-widget-content,
+.ui-panelgrid.ui-panelgrid-blank .ui-panelgrid-header.ui-widget-header,
+.ui-panelgrid.ui-panelgrid-blank .ui-panelgrid-footer.ui-widget-header,
+.ui-panelgrid.ui-panelgrid-blank .ui-panelgrid-header > tr.ui-widget-header,
+.ui-panelgrid.ui-panelgrid-blank tbody > tr.ui-widget-content,
+.ui-panelgrid.ui-panelgrid-blank tbody > tr.ui-widget-content > td.ui-panelgrid-cell,
+.ui-panelgrid.ui-panelgrid-blank .ui-panelgrid-footer > tr.ui-widget-footer {
+    background: none !important;
+    border: 0 none !important;
+}
+
+
+.ui-fieldset-legend {
+	padding: 0.3em 0.6em !important;
+	margin-top: 0.6em;
+	background: none !important;
+}
+
+.ui-selectmanycheckbox .label {
+	color: #222 !important;
+}
+
+.ui-datatable-even {
+	color: #222 !important;
+}
+
+.ui-datatable-odd {
+	color: #222 !important;
+}
+
+.ui-layout-north {
+    overflow:visible !important;
+    /*z-index:20 !important;*/
+    padding: 0em !important;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+    overflow:visible !important;
+    padding: 0em !important;
+}
+
+.ui-layout-south {
+    overflow:visible !important;
+    padding: 0em !important;
+}
+
+.ui-layout-south .ui-layout-unit-content {
+    overflow:visible !important;
+    padding: 0em !important;
+}
+
+.ui-messages-info-detail, .ui-messages-warn-detail, .ui-messages-error-detail, .ui-messages-fatal-detail, .ui-message-info-detail, .ui-message-warn-detail, .ui-message-error-detail, .ui-message-fatal-detail {
+	font-weight: bold;
+}
+
+.ui-menuitem-link {
+    font-size: 0.92em !important;
+    font-weight: 600 !important;
+}  
+
+.ui-widget-content.ui-treetable-selectable-node.default{
+	color: #222 !important;
+}
+
+.ui-layout-unit-header.ui-widget-header.ui-corner-all{
+	padding-top:4px !important;
+	padding-bottom:0px !important;
+}
+
+.ui-tabmenu-nav.ui-widget-header{
+	background: none !important;
+}
+
+.ui-tabmenu.ui-widget{
+	background: none !important;
+	border: none !important;
+}
+
+.ui-fileupload-content{
+	border: none !important;
+}
+
+.ui-fileupload-buttonbar{
+	background: none !important;
+	border: none !important;
+}
+
+/*Custom*/
+
+.blankToolbar{
+	background:none !important;
+	border-left:none !important;
+	border-top:none !important;
+	border-right:none !important;
+	padding-top:8px !important;
+	padding-bottom:8px !important;
+}
+
+.outputText {
+	font-weight: bold;
+	color: #222 !important;
+}
+
+.outputTextEmpha {
+	font-weight: bold;
+	color: #FAD42E !important;
+}
+
+.domNodel1{
+	font-weight: bold;
+	color: #222;
+}
+
+.domNodel2{
+	font-weight: bold;
+	font-style: italic;
+	color: #222;
+}
+
+.objNode{
+	font-style: italic;
+	color: #222;
+}
+
+.privNode{
+	color: #222;
+}
+
+.input-required {
+	background: #F5F5F5 !important;
+}
+
+.menu-required .ui-selectonemenu-label { 
+	background: #F5F5F5;
+}
+.panel-required .ui-selectonemenu-list { 
+	background: #F5F5F5;
+}
+
+.customTableLink:link{
+    color: #5C9CCC !important;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.customTableLink:visited{
+    color: #5C9CCC !important;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.customTableLink:hover{
+    color: #000099 !important;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.customTableLink:active{
+    color: #5C9CCC !important;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.customNavLink:link{
+    color: #5C9CCC !important;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.customNavLink:visited{
+    color: #5C9CCC !important;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.customNavLink:hover{
+    color: #FAD42E !important;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.customNavLink:active{
+    color: #5C9CCC !important;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+
