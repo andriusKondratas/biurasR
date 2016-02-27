@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ioffice</groupId>
   <artifactId>br</artifactId>
-  <packaging>ear</packaging>
+  <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>br Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -252,7 +252,7 @@
 				<filtering>true</filtering>
 			</resource>
 			<resource>
-				<directory>src/main/webapp/resources</directory>
+				<directory>src/main/application/resources</directory>
 				<filtering>false</filtering>
 			</resource>
 		</resources>

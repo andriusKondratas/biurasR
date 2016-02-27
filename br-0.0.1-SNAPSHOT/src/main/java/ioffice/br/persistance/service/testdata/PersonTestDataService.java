@@ -7,12 +7,7 @@ import java.util.List;
 import ioffice.br.persistance.enums.ActivityType;
 import ioffice.br.persistance.enums.PersonState;
 import ioffice.br.persistance.enums.RegionType;
-import ioffice.br.persistance.model.classification.Activity;
-import ioffice.br.persistance.model.classification.Person;
-import ioffice.br.persistance.model.classification.Region;
-import ioffice.br.persistance.service.classification.ActivityService;
-import ioffice.br.persistance.service.classification.PersonService;
-import ioffice.br.persistance.service.classification.RegionService;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -24,15 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Scope("singleton")
 public class PersonTestDataService {
 
-	@Autowired
-	private PersonService personService;
-
-	@Autowired
-	private RegionService regionService;
-
-	@Autowired
-	private ActivityService activityService;
-
+	
 	public String createPersons() {
 		try {
 			createPerson("38203050985", "Abraomas", PersonState.ACTIVE, "Pusyno", "51", "34361", "Kaunas", "Šilainiai", "+37065026513", null,
@@ -47,7 +34,7 @@ public class PersonTestDataService {
 					"abrlink@atea.lt", "Fizinis asmuo", "Pilnatis", null, null, null, null, null, ActivityType.INSPECTOR, ActivityType.VESSEL_OWNER,
 					RegionType.BALTIC);
 
-			createPerson("38503050985", "Saule", PersonState.ACTIVE, "Utenos", "87", "24361", "Anyk�?čiai", "Kaimas", "+37065026813", null,
+			createPerson("38503050985", "Saule", PersonState.ACTIVE, "Utenos", "87", "24361", "Anyk�?čiai", "Kaimas", "+37065026813", null,
 					"abrlink@atea.lt", "Fizinis asmuo", "Kaitri", null, null, null, null, null, ActivityType.CAPTAIN, ActivityType.VESSEL_OWNER,
 					RegionType.BALTIC, RegionType.COAST, RegionType.ATLANTIC);
 
@@ -63,9 +50,9 @@ public class PersonTestDataService {
 			String district, String phoneNumber1, String phoneNumber2, String email, String comments, String surname, String secondName, Date birthDate,
 			Date registrationDate, Date unRegistrationDate, String webSite, Enum... types) throws Exception {
 
-		Person person = new Person();
+		//Person person = new Person();
 
-		person.setIndividualCode(code);
+		/*person.setIndividualCode(code);
 		person.setIndividualName(name);
 		person.setState(state);
 		person.setIndividualStreet(street);
@@ -112,7 +99,7 @@ public class PersonTestDataService {
 			//personService.saveOrUpdate(person);
 		} catch (Exception e) {
 			throw new Exception("Unable to add person with code: " + code + "<br>");
-		}
+		}*/
 	}
 
 	public String createRegions() {
@@ -129,10 +116,10 @@ public class PersonTestDataService {
 	}
 
 	private void createRegion(RegionType regionType) throws Exception {
-		Region region = new Region();
-		region.setCode(regionType);
+		///Region region = new Region();
+		//region.setCode(regionType);
 		try {
-			regionService.saveOrUpdate(region);
+			//regionService.saveOrUpdate(region);
 		} catch (Exception e) {
 			throw new Exception(String.format("Unable to create region with code: %s", regionType.name()), e);
 		}
@@ -152,10 +139,10 @@ public class PersonTestDataService {
 	}
 
 	private void createActivity(ActivityType activityType) throws Exception {
-		Activity activity = new Activity();
-		activity.setCode(activityType);
+		//Activity activity = new Activity();
+		//activity.setCode(activityType);
 		try {
-			activityService.saveOrUpdate(activity);
+		//	activityService.saveOrUpdate(activity);
 		} catch (Exception e) {
 			throw new Exception(String.format("Unable to create activity with code: %s", activityType.name()), e);
 		}
