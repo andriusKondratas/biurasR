@@ -41,6 +41,8 @@ public class ApplicationBean extends BasicBean implements Serializable {
 	List<SelectItem> measureUnits;
 	List<SelectItem> limits;
 	List<SelectItem> vesselCategories;
+	
+	private String ttttt;
 
 	public void loadModel() {
 		
@@ -139,5 +141,10 @@ public class ApplicationBean extends BasicBean implements Serializable {
 		this.administrationObjectCache = administrationObjectCache;
 	}
 
+	public String getTtttt() {
+		return ttttt;
+	}
+
+	
 	
 }

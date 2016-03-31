@@ -2,24 +2,16 @@
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 	<converter>
-		<converter-for-class>lt.atea.izdis.persistance.enums.PersonState</converter-for-class>
+		<converter-for-class>ioffice.br.persistance.enums.PersonState</converter-for-class>
 		<converter-class>javax.faces.convert.EnumConverter</converter-class>
 	</converter>
 	<converter>
-		<converter-for-class>lt.atea.izdis.persistance.model.classification.Activity</converter-for-class>
-		<converter-class>lt.atea.izdis.pageflow.classification.converters.ActivityConverter</converter-class>
+		<converter-for-class>ioffice.br.persistance.model.administration.Role</converter-for-class>
+		<converter-class>ioffice.br.pageflow.administration.converters.RoleConverter</converter-class>
 	</converter>
 	<converter>
-		<converter-for-class>lt.atea.izdis.persistance.model.classification.Region</converter-for-class>
-		<converter-class>lt.atea.izdis.pageflow.classification.converters.RegionConverter</converter-class>
-	</converter>
-	<converter>
-		<converter-for-class>lt.atea.izdis.persistance.model.administration.Role</converter-for-class>
-		<converter-class>lt.atea.izdis.pageflow.administration.converters.RoleConverter</converter-class>
-	</converter>
-	<converter>
-		<converter-for-class>lt.atea.izdis.persistance.model.core.Convertable</converter-for-class>
-		<converter-class>lt.atea.izdis.pageflow.common.converters.GenericConvertableConverter</converter-class>
+		<converter-for-class>ioffice.br.persistance.model.core.Convertable</converter-for-class>
+		<converter-class>ioffice.br.pageflow.common.converters.GenericConvertableConverter</converter-class>
 	</converter>
 	<!-- JSF and Spring are integrated -->
 	<!-- Enable Spring -->
@@ -30,7 +22,7 @@
 			<supported-locale>en</supported-locale>
 		</locale-config>
 		<resource-bundle>
-			<base-name>lt.atea.izdis.config.CustomResourceBundle</base-name>
+			<base-name>ioffice.br.config.CustomResourceBundle</base-name>
 			<var>msg</var>
 		</resource-bundle>
 		<message-bundle>ValidationMessages
@@ -42,28 +34,28 @@
 		<view-handler>org.primefaces.application.DialogViewHandler
 		</view-handler>
 		<system-event-listener>
-			<system-event-listener-class>lt.atea.izdis.config.PreRenderComponentListener
+			<system-event-listener-class>ioffice.br.config.PreRenderComponentListener
 			</system-event-listener-class>
 			<system-event-class>javax.faces.event.PreRenderComponentEvent
 			</system-event-class>
 			<source-class>org.primefaces.component.inputtext.InputText</source-class>
 		</system-event-listener>
 		<system-event-listener>
-			<system-event-listener-class>lt.atea.izdis.config.PreRenderComponentListener
+			<system-event-listener-class>ioffice.br.config.PreRenderComponentListener
 			</system-event-listener-class>
 			<system-event-class>javax.faces.event.PreRenderComponentEvent
 			</system-event-class>
 			<source-class>org.primefaces.component.selectonemenu.SelectOneMenu</source-class>
 		</system-event-listener>
 		<system-event-listener>
-			<system-event-listener-class>lt.atea.izdis.config.PreRenderComponentListener
+			<system-event-listener-class>ioffice.br.config.PreRenderComponentListener
 			</system-event-listener-class>
 			<system-event-class>javax.faces.event.PreRenderComponentEvent
 			</system-event-class>
 			<source-class>org.primefaces.component.password.Password</source-class>
 		</system-event-listener>
 		<system-event-listener>
-			<system-event-listener-class>lt.atea.izdis.config.PreRenderComponentListener
+			<system-event-listener-class>ioffice.br.config.PreRenderComponentListener
 			</system-event-listener-class>
 			<system-event-class>javax.faces.event.PreRenderComponentEvent
 			</system-event-class>
