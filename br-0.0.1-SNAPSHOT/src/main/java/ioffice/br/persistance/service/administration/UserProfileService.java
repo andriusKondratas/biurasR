@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("UserService")
+@Service("UserProfileService")
 @Transactional(readOnly = false)
 @Scope("singleton")
 public class UserProfileService extends GenericService<UserProfile> {

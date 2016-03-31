@@ -68,7 +68,7 @@ public class LoginBean extends BasicBean implements Serializable {
 			
 			ApplicationBean applicationBean = (ApplicationBean) facesContext().getApplication().getELResolver().getValue(elContext(), null, "applicationMB");
 			applicationBean.loadModel();
-			
+		
 			navigate("welcomeVolt");
 		}
 	}

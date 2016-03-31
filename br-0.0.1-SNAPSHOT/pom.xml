@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>ioffice</groupId>
-  <artifactId>br</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>br Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <properties>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ioffice</groupId>
+	<artifactId>br</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>br Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.0.RELEASE</spring.version>
 		<spring.webflow.version>2.4.1.RELEASE</spring.webflow.version>
@@ -33,17 +33,17 @@
 		<file.encoding>UTF-8</file.encoding>
 		<tomcat.server.host.port></tomcat.server.host.port>
 		<environment.type></environment.type>
-        <environment.name></environment.name>
-        <project.version>1.0.rc1.12</project.version>
+		<environment.name></environment.name>
+		<project.version>1.0.rc1.12</project.version>
 	</properties>
-  <repositories>
+	<repositories>
 		<repository>
 			<id>prime-repo</id>
 			<name>Prime Repo</name>
 			<url>http://repository.primefaces.org</url>
 		</repository>
-  </repositories>	
-  <dependencies>
+	</repositories>
+	<dependencies>
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
@@ -74,12 +74,6 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>ognl</groupId>
@@ -244,15 +238,15 @@
 			<version>${oracle.version}</version>
 		</dependency>
 	</dependencies>
-  <build>
-		<finalName>BiurasR</finalName>
+	<build>
+		<finalName>br-0.0.1-SNAPSHOT</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
 			</resource>
 			<resource>
-				<directory>src/main/application/resources</directory>
+				<directory>src/main/webapp/resources</directory>
 				<filtering>false</filtering>
 			</resource>
 		</resources>
@@ -288,6 +282,14 @@
 				<version>2.7</version>
 				<configuration>
 					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 		</plugins>

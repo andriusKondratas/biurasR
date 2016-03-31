@@ -29,7 +29,7 @@
 	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 	</beans:bean>
 	<!-- Inject authentication Manager to our LoginBean -->
-	<beans:bean id="loginBean" name="loginBean" class="lt.atea.izdis.pageflow.administration.beans.LoginBean" scope="prototype">
+	<beans:bean id="loginBean" name="loginBean" class="ioffice.br.pageflow.administration.beans.LoginBean" scope="prototype">
 		<beans:property name="authenticationManager" ref="authenticationManager"></beans:property>
 	</beans:bean>
 </beans:beans>
