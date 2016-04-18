@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
 import ioffice.br.persistance.enums.DomainObjectType;
-import ioffice.br.persistance.model.core.AuditableEntity;
+import ioffice.br.persistance.model.core.AbstractEntity;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -23,7 +23,7 @@ import org.hibernate.validator.constraints.Email;
 @Entity
 @Table(name = "ADM_USER")
 @SequenceGenerator(name = "default_gen", sequenceName = "users_seq", allocationSize = 1)
-public class User extends AuditableEntity {
+public class User extends AbstractEntity {
 
 	@Email
 	@Column(unique = true, nullable=false, length=50)

@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import ioffice.br.pageflow.administration.beans.BootsrapBean;
+
 @Configuration
 @ComponentScan("ioffice.br")
 @EnableWebMvc
@@ -24,7 +26,8 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
 		return encoder;
 	}
 	
-	
-	
-
+	@Bean
+	public BootsrapBean bootsrapBean() {
+		return new BootsrapBean();
+	}
 }

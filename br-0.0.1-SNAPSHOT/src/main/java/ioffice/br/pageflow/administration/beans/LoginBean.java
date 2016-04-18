@@ -82,7 +82,6 @@ public class LoginBean extends BasicBean implements Serializable {
 
 	public void install() {
 		StringBuffer status = new StringBuffer();
-		status.append(getActionTestDataService().createActions()).append("<br>");
 		status.append(getActionTestDataService().createDomainObjects()).append("<br>");
 		status.append(getRoleTestDataService().createRoles()).append("<br>");
 		status.append(getUserTestDataService().createUsers()).append("<br>");

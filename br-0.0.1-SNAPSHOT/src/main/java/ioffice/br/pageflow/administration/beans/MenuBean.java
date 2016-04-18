@@ -43,8 +43,8 @@ public class MenuBean extends BasicBean implements Serializable {
 		this.breadCrumbModel = new DefaultMenuModel();
 		this.breadCrumbModel.addElement(new DefaultMenuItem("HOME", null, "/pages/welcome.xhtml"));
 		loadMenuModel();
-		loadInternalClassificationTabModel();
-		loadActualClassificationTabModel();
+		//loadInternalClassificationTabModel();
+		//loadActualClassificationTabModel();
 	}
 
 	public void toggleLayout(ToggleEvent te) {
@@ -141,7 +141,7 @@ public class MenuBean extends BasicBean implements Serializable {
 		return it;
 	}
 
-	private void loadInternalClassificationTabModel() {
+	/*private void loadInternalClassificationTabModel() {
 		this.internalClassificationTabModel = new DefaultMenuModel();
 		for (DomainObjectType domainObjectType : DomainObjectType.values()) {
 			if (domainObjectType.getDomain().equals(DomainType.CLI_INT) && !domainObjectType.isHidden()) {
@@ -159,7 +159,7 @@ public class MenuBean extends BasicBean implements Serializable {
 						.getSeqNo().toString(), domainObjectType.getUrl(), null, !hasAccess(domainObjectType, PriviledgeType.VIEW), domainObjectType.getIcon()));
 			}
 		}
-	}
+	}*/
 
 	private void updateBreadCrumbModel(MenuElement itemClicked, MenuItemType itemType) {
 		if (itemType.equals(MenuItemType.MENU)) {

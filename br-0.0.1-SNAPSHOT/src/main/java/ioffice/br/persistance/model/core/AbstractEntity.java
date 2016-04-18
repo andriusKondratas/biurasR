@@ -1,15 +1,20 @@
 package ioffice.br.persistance.model.core;
 
+import java.util.Date;
 import java.util.Locale;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
 import ioffice.br.persistance.enums.DomainObjectType;
+import ioffice.br.persistance.model.administration.User;
 
 @MappedSuperclass
 public abstract class AbstractEntity implements Convertable{

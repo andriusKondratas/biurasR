@@ -8,7 +8,7 @@ public abstract class SpringDispatcherServletInitializer extends AbstractAnnotat
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { ApplicationConfig.class, PersistanceConfig.class, ApplicationProperties.class };
+		return new Class[] { ApplicationConfig.class, PersistanceConfig.class };
 	}
 
 }

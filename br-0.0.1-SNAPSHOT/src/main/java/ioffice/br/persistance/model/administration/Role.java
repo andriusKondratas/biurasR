@@ -10,11 +10,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import ioffice.br.persistance.enums.DomainObjectType;
-import ioffice.br.persistance.model.core.AuditableEntity;
-
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+
+import ioffice.br.persistance.enums.DomainObjectType;
+import ioffice.br.persistance.model.core.AuditableEntity;
 
 @Entity
 @Table(name = "ADM_ROLE")

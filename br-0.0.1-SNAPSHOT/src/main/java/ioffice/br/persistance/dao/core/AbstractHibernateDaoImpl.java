@@ -2,9 +2,7 @@ package ioffice.br.persistance.dao.core;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -12,16 +10,22 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import ioffice.br.persistance.common.DataRequest;
-import ioffice.br.persistance.common.GridResult;
+import ioffice.br.persistance.common.DataResponse;
+import ioffice.br.persistance.model.administration.User;
 import ioffice.br.persistance.model.core.AbstractEntity;
+import ioffice.br.persistance.model.core.AuditableEntity;
+import ioffice.br.persistance.service.administration.UserService;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
+import org.primefaces.model.SortOrder;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Transactional
 public abstract class AbstractHibernateDaoImpl<E extends AbstractEntity> implements AbstractHibernateDao<E> {
@@ -31,7 +35,7 @@ public abstract class AbstractHibernateDaoImpl<E extends AbstractEntity> impleme
 	Logger logger = Logger.getLogger(AbstractHibernateDaoImpl.class);
 	@Inject
 	SessionFactory sessionFactory;
-
+	
 	@SuppressWarnings("unchecked")
 	public AbstractHibernateDaoImpl() {
 		Type t = getClass().getGenericSuperclass();
@@ -44,6 +48,14 @@ public abstract class AbstractHibernateDaoImpl<E extends AbstractEntity> impleme
 
 	protected Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
+	}
+	
+	protected Criteria createCriteria() {
+		return sessionFactory.getCurrentSession().createCriteria(type);
+	}
+	
+	protected Criteria createNotDeletedCriteria() {
+		return createCriteria().add(RESTRICTION_NOT_DELETED);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -61,62 +73,120 @@ public abstract class AbstractHibernateDaoImpl<E extends AbstractEntity> impleme
 
 	@SuppressWarnings("unchecked")
 	public List<E> loadAll() {
-		return getCurrentSession().createCriteria(type).add(RESTRICTION_NOT_DELETED).list();
+		return createNotDeletedCriteria().list();
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<E> load(int firstResult, int maxResults) {
-		return getCurrentSession().createCriteria(type).add(RESTRICTION_NOT_DELETED).setFirstResult(firstResult).setMaxResults(maxResults).list();
+		return createNotDeletedCriteria().setFirstResult(firstResult).setMaxResults(maxResults).list();
 	}
 
 	public Long getCountAll() {
-		return ((Number) getCurrentSession().createCriteria(type).setProjection(Projections.rowCount()).uniqueResult()).longValue();
+		return ((Number) createCriteria().setProjection(Projections.rowCount()).uniqueResult()).longValue();
 	}
 
 	public void delete(E entity) {
 		getCurrentSession().delete(entity);
 	}
 
-	public GridResult<E> findByRequest(DataRequest dataRequest) {
+	public DataResponse<E> findByRequest(DataRequest dataRequest) {
+		DataResponse<E> result = new DataResponse<E>();
 
-		Criteria criteria = getCurrentSession().createCriteria(type);
+		Criteria criteria = createCriteria();
+		if(!dataRequest.isDeleted()){
+			criteria.add(RESTRICTION_NOT_DELETED);
+		}
+		
+		addFilteringCriteria(criteria, dataRequest);
+		Long count = (Long) criteria.setProjection(Projections.rowCount()).uniqueResult();
+		result.setTotal(count.intValue());
+		result.setFirst(dataRequest.getFirst());
 
+		criteria = createCriteria();
+		if(!dataRequest.isDeleted()){
+			criteria.add(RESTRICTION_NOT_DELETED);
+		}
+		
 		addSortingCriteria(criteria, dataRequest);
 		addFilteringCriteria(criteria, dataRequest);
 
-		GridResult<E> result = new GridResult<E>();
+		if (result.getTotal() > 0) {
+			int firstResult = dataRequest.getFirst();
+			int maxResults = dataRequest.getPageSize();
 
-		int firstResult = (dataRequest.getCurrent() - 1) * dataRequest.getRowCount();
-		int maxResults = dataRequest.getRowCount();
-
-		@SuppressWarnings("unchecked")
-		List<E> entities = criteria.setFirstResult(firstResult).setMaxResults(maxResults).list();
-
-		result.setObjects(entities);
-		result.setCurrent(dataRequest.getCurrent());
-
-		criteria = getCurrentSession().createCriteria(type);
-		Long count = (Long) criteria.setProjection(Projections.rowCount()).uniqueResult();
-
-		result.setTotal(count.intValue());
-
+			@SuppressWarnings("unchecked")
+			List<E> entities = criteria.setFirstResult(firstResult).setMaxResults(maxResults).list();
+			result.setEntities(entities);
+		}
 		return result;
 	}
-
+	
 	protected void addSortingCriteria(Criteria criteria, DataRequest dataRequest) {
-		// Must be implemented separately for each type if necessary.
+		String sortField = dataRequest.getSortField();
+		SortOrder sortOrder = dataRequest.getSortOrder();
+
+		if (sortField != null) {
+			String[] subTypes = sortField.split("\\.");
+			if (subTypes.length > 1) {
+				criteria.createAlias(subTypes[0], subTypes[0]);
+			}
+
+			if (SortOrder.ASCENDING.equals(sortOrder)) {
+				criteria.addOrder(Order.asc(sortField));
+			} else if (SortOrder.DESCENDING.equals(sortOrder)) {
+				criteria.addOrder(Order.desc(sortField));
+			}
+		}
 	}
 
 	protected void addFilteringCriteria(Criteria criteria, DataRequest dataRequest) {
 		// Must be implemented separately for each type if necessary.
 	}
 
-	protected void addDateRange(Criteria criteria, String field, LocalDate dateFrom, LocalDate dateTo) {
+	protected void addDateRange(Criteria criteria, String field, Date dateFrom, Date dateTo) {
 		if (dateFrom != null) {
-			criteria.add(Restrictions.ge(field, Date.from(dateFrom.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant())));
+			criteria.add(Restrictions.ge(field, dateFrom));
 		}
 		if (dateTo != null) {
-			criteria.add(Restrictions.le(field, Date.from(dateTo.atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant())));
+			criteria.add(Restrictions.le(field, dateTo));
 		}
 	}
+	
+	protected void addBigDecimalRange(Criteria criteria, String field, BigDecimal decimalFrom, BigDecimal decimalTo) {
+		if (decimalFrom != null && !BigDecimal.ZERO.equals(decimalFrom)) {
+			criteria.add(Restrictions.ge(field, decimalFrom));
+		}
+		if (decimalTo != null && !BigDecimal.ZERO.equals(decimalTo)) {
+			criteria.add(Restrictions.le(field, decimalTo));
+		}
+	}
+	
+	public void addAuditInfo(E model, UserService userService) {
+		if (model instanceof AuditableEntity) {
+
+			// Should be unnecessary after users are created from script
+			// Throws NullPointerException when users are created from BootStrapBean
+			User user;
+			try {
+				user = userService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+			}
+			catch (NullPointerException e) {
+				user = userService.findByUsername("admin@namoprojektas.eu");
+			}
+
+			AuditableEntity entity = (AuditableEntity) model;
+			
+			entity.setDateModified(new Date());
+			entity.setModifiedBy(user);
+
+			if (entity.getDateCreated() == null) {
+				entity.setDateCreated(entity.getDateModified());
+			}
+
+			if (entity.getCreatedBy() == null) {
+				entity.setCreatedBy(entity.getModifiedBy());
+			}
+
+		}
+	}		
 }

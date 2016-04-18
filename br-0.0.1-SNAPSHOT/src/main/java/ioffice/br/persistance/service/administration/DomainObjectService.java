@@ -1,6 +1,7 @@
 package ioffice.br.persistance.service.administration;
 
 import ioffice.br.persistance.dao.administration.DomainObjectDao;
+import ioffice.br.persistance.enums.DomainObjectType;
 import ioffice.br.persistance.model.administration.DomainObject;
 import ioffice.br.persistance.service.core.GenericService;
 
@@ -18,8 +19,8 @@ public class DomainObjectService extends GenericService<DomainObject> {
 	public DomainObjectService(DomainObjectDao dao) {
 		super(dao);
 	}
-
-	public DomainObject findByCode(String code) {
-		return ((DomainObjectDao) this.dao).findByCode(code);
+	
+	public DomainObject findByCode(DomainObjectType domainObjectType) {
+		return ((DomainObjectDao) this.dao).findByCode(domainObjectType);
 	}
 }
