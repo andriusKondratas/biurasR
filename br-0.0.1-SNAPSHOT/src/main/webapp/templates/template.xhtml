@@ -4,7 +4,6 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-
     <h:head>
         <f:facet name="first">
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,25 +12,20 @@
             <meta name="apple-mobile-web-app-capable" content="yes" />
         </f:facet>
         <title>PrimeFaces Volt - Responsive Layout</title>
-
         <h:outputScript name="js/layout.js" library="volt-layout" />
-
         <ui:insert name="head" />
     </h:head>
-
     <h:body styleClass="BlueBody">
-        
+    
         <ui:include src="/pages/topbar.xhtml" />
         
         <div id="layout-portlets-cover">
             <div id="layout-portlets-cover-indent">
                 <div id="layout-portlets-table">
-
                     <div id="layout-portlets-tablerow">
-
                         <div id="layout-portlets-tablecell-left">
                             <div id="layout-menu-cover">
-                                <ui:include src="/pages/layoutmenu.xhtml" />
+                                <ui:include src="/pages/menu.xhtml" />
                             </div>
                         </div>
                         <div id="layout-portlets-tablecell-right">
@@ -41,7 +35,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
         
@@ -57,5 +50,4 @@
         <h:outputStylesheet name="css/font-awesome.css" library="volt-layout" />
         <h:outputStylesheet name="css/volt-layout.css" library="volt-layout" />
     </h:body>
-
 </html>

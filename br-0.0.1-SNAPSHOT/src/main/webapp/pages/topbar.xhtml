@@ -1,41 +1,39 @@
 <ui:composition 
-
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui">
-    
-    
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <!-- TOPBAR START -->    
     <div id="layout-topbar">
         <div id="layout-topbar-indent">
             <a id="menu-button"><i class="icon-th-menu"></i></a>
-            <a href="/pages/welcomeVolt.xhtml"><h:graphicImage name="images/biurasR1a.png" id="logo" /></a>
+            <a href="/pages/welcome.xhtml"><h:graphicImage name="images/biurasR1a.png" id="logo" /></a>
             
             <span class="DispInlBlock Fright" style="margin:10px 10px 0px 0px;">
                 <h:form styleClass="DispInline">
                     <p:splitButton value="Menu" icon="ui-icon-check fa fa-cog" styleClass="White Fs14" appendTo="@this">
-                        <p:menuitem value="Users" icon="fa fa-user" />
-                        <p:menuitem value="Reports" icon="fa fa-file-text-o" />
-                        <p:menuitem value="Charts" icon="fa fa-line-chart" />
+                        <p:menuitem value="Mano profilis" icon="fa fa-user" />
                         <p:separator />
-                        <p:menuitem value="RRRR" icon="fa fa-tasks" />
-                        <p:menuitem value="Messages" icon="fa fa-envelope-o" />
-                        <p:menuitem value="Notes" icon="fa fa-file-zip-o" />
+                        <p:menuitem value="Lietuvių" icon="fa fa-language" />
                         <p:separator />
-                        <p:menuitem value="Log In / Log Out" url="#" icon="fa fa-key" />
+                        <c:if test="#{loginMB.authenticated}">
+                          <p:menuitem value="Atsijungti" url="#" icon="fa fa-key" action="#{loginMB.logout}"/>
+                        </c:if>
+                        <c:if test="#{!loginMB.authenticated}">
+                          <p:menuitem value="Prisijungti" url="#" icon="fa fa-key" action="#{loginMB.logout}"/>
+                        </c:if>
                     </p:splitButton>
                 </h:form>
             </span>
         </div>
     </div>
     <!-- TOPBAR END -->
-    
     <!-- TOPMENU START -->
     <ul id="top-menu">
         <li style="float:left; border:none;">
-            <a href="#"><i class="icon-vcard Opac80"></i><span><span class="Fs16">Jack BAUER, Sveiki</span> <br/> <span class="Opac50 Fs12">Administratorius</span></span></a>
+            <a href="#"><i class="icon-vcard Opac80"></i><span><span class="Fs16">Romualdas Kemežys, Sveiki</span> <br/> <span class="Opac50 Fs12">Administratorius</span></span></a>
         </li>
         <li>
             <a href="#"><i class="icon-printer2 Opac80"></i><span><span class="Fs16">Projektai</span> <br/> <span class="Opac50 Fs12">Viso 200 projektų</span></span></a>

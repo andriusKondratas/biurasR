@@ -79,7 +79,7 @@
 	</filter-mapping>
 	<!-- Welcome page -->
 	<welcome-file-list>
-		<welcome-file>faces/pages/loginVolt.xhtml</welcome-file>
+		<welcome-file>faces/pages/welcome.xhtml</welcome-file>
 	</welcome-file-list>
 	<!-- JSF mapping -->
 	<servlet>

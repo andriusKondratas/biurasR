@@ -15,9 +15,9 @@
 		
 	    <sec:intercept-url pattern="/**" access="permitAll" /> 
 		
-		<sec:form-login login-page="/pages/loginVolt.xhtml" />
+		<sec:form-login login-page="/pages/login.xhtml" />
 		
-		<sec:logout invalidate-session="true" delete-cookies="true" logout-success-url="/pages/loginVolt.xhtml"></sec:logout>
+		<sec:logout invalidate-session="true" delete-cookies="true" logout-success-url="/pages/login.xhtml"></sec:logout>
 	</sec:http>
 	<!-- Set hibernateUserDetailsService class as the authentication Manager for Spring Security -->
 	<sec:authentication-manager alias="authenticationManager">
