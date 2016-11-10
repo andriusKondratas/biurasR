@@ -46,6 +46,10 @@ public class MenuBean extends BasicBean implements Serializable {
 		//loadInternalClassificationTabModel();
 		//loadActualClassificationTabModel();
 	}
+	
+	public void clearMenuModel(){
+		menuModel = new DefaultMenuModel();
+	}
 
 	public void toggleLayout(ToggleEvent te) {
 		// We have only one collapse=true layout unit so far

@@ -3,7 +3,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <f:facet name="first">
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -23,11 +24,13 @@
             <div id="layout-portlets-cover-indent">
                 <div id="layout-portlets-table">
                     <div id="layout-portlets-tablerow">
+                        <c:if test="#{loginMB.authenticated}">
                         <div id="layout-portlets-tablecell-left">
                             <div id="layout-menu-cover">
                                 <ui:include src="/pages/menu.xhtml" />
                             </div>
                         </div>
+                        </c:if>
                         <div id="layout-portlets-tablecell-right">
                             <ui:insert name="content">
                                 Template

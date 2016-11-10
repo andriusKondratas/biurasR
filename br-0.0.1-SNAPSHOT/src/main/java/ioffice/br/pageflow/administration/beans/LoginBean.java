@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PreDestroy;
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
-import org.primefaces.event.SelectEvent;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -30,7 +30,7 @@ public class LoginBean extends BasicBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private String userName = null;
 	private String password = null;
 
@@ -42,31 +42,32 @@ public class LoginBean extends BasicBean implements Serializable {
 	@ManagedProperty(value = "#{authenticationManager}")
 	private AuthenticationManager authenticationManager = null;
 
-	public void login() {
-	
+	public String login() {
+
 		if (performLogin()) {
-			MenuBean menuBean = (MenuBean) facesContext().getApplication().getELResolver().getValue(elContext(), null, "menuMB");
+			MenuBean menuBean = (MenuBean) facesContext().getApplication().getELResolver().getValue(elContext(), null,
+					"menuMB");
 			menuBean.loadModel();
-			
-			ApplicationBean applicationBean = (ApplicationBean) facesContext().getApplication().getELResolver().getValue(elContext(), null, "applicationMB");
+
+			ApplicationBean applicationBean = (ApplicationBean) facesContext().getApplication().getELResolver()
+					.getValue(elContext(), null, "applicationMB");
 			applicationBean.loadModel();
-		
-			navigate("welcomeVolt");
+
+			((ConfigurableNavigationHandler) facesContext().getApplication().getNavigationHandler())
+					.performNavigation("welcome");
+
+			return null;
 		}
+		return null;
 	}
 
 	@PreDestroy
 	public void logout() {
 		SecurityContextHolder.getContext().setAuthentication(null);
-		//facesContext().getExternalContext().invalidateSession();
-		navigate("/pages/loginVolt.xhtml");
-	}
+		// facesContext().getExternalContext().invalidateSession();
+		((ConfigurableNavigationHandler) facesContext().getApplication().getNavigationHandler())
+				.performNavigation("welcome?faces-redirect=true");
 
-	public void onRowSelect(SelectEvent event) {
-		User user = (User) event.getObject();
-		this.password = "test";
-		this.userName = user.getEmail();
-		login();
 	}
 
 	public AuthenticationManager getAuthenticationManager() {
@@ -115,8 +116,8 @@ public class LoginBean extends BasicBean implements Serializable {
 			Authentication result = authenticationManager.authenticate(request);
 			SecurityContextHolder.getContext().setAuthentication(result);
 		} catch (AuthenticationException e) {
-			facesContext().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_WARN, "Prisijungimo Klaida", "Neteisingas naudojo vardas arba slaptažodis"));
+			facesContext().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Prisijungimo Klaida",
+					"Neteisingas naudojo vardas arba slaptažodis"));
 			return false;
 		}
 		return true;
