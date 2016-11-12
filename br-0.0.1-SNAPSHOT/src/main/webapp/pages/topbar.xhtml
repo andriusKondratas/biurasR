@@ -7,10 +7,9 @@
 	<!-- TOPBAR START -->
 	<div id="layout-topbar">
 		<div id="layout-topbar-indent">
-			<a id="menu-button"><i class="icon-th-menu"></i></a> <a
-				href="/pages/welcome.xhtml"><h:graphicImage
-					name="images/biurasR1a.png" id="logo" /></a> <span
-				class="DispInlBlock Fright" style="margin: 10px 10px 0px 0px;">
+			<a id="menu-button"><i class="icon-th-menu"></i></a>
+            <a href="/pages/welcome.xhtml"><h:graphicImage name="images/logo.svg" id="logo" library="volt-layout" /></a>
+			<span class="DispInlBlock Fright" style="margin:10px 10px 0px 0px;">	
 				<h:form id="smMId" styleClass="DispInline">
 					<p:splitButton  icon="ui-icon-check fa fa-cog"
 						styleClass="White Fs14" appendTo="@this">
@@ -18,10 +17,10 @@
 						<p:separator />
 						<c:if test="#{loginMB.authenticated}">
 							<p:menuitem value="Atsijungti" icon="fa fa-key"
-								action="#{loginMB.logout}" />
+								action="#{loginMB.logout}"  />
 						</c:if>
 						<c:if test="#{!loginMB.authenticated}">
-							<p:menuitem value="Prisijungti" icon="fa fa-key" action="login"
+							<p:menuitem value="Prisijungti" icon="fa fa-key" action="#{loginMB.goTologin}"
 								process="@all" />
 						</c:if>
 					</p:splitButton>

@@ -12,8 +12,9 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
             <meta name="apple-mobile-web-app-capable" content="yes" />
         </f:facet>
-        <title>PrimeFaces Volt - Responsive Layout</title>
+        <title>E Biuras - Namu pridavimas</title>
         <h:outputScript name="js/layout.js" library="volt-layout" />
+        <h:outputScript name="js/app/br.js" />
         <ui:insert name="head" />
     </h:head>
     <h:body styleClass="BlueBody">
@@ -43,9 +44,11 @@
         
         <div class="Container100 TexAlCenter White Fs14 FontVoltLight Opac60">
             <div class="EmptyBox30"></div>
-            BiurasR | Visos teisės saugomos
+            E Biuras 2016 | Visos teisės saugomos
             <div class="EmptyBox30"></div>
         </div>
+
+         <ui:include src="/pages/misc.xhtml"></ui:include>
 
         <h:outputStylesheet name="css/core-layout.css" library="volt-layout" />
         <h:outputStylesheet name="css/animate.css" library="volt-layout" />

@@ -1,26 +1,42 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:form id="confirmDialogForm" showDetail="true">
-	<p:dialog header="Perspėjimas" widgetVar="confirmDialog" resizable="false" width="20%" modal="true" closable="false">
+	<p:dialog header="Perspėjimas" widgetVar="confirmDialog"
+		resizable="false" width="20%" modal="true" closable="false">
 		<p:outputPanel styleClass="ui-panelgrid-blank">
 			<p:panel>
-				<h:panelGrid columns="2" cellpadding="5" styleClass="ui-panelgrid-blank">
+				<h:panelGrid columns="2" cellpadding="5"
+					styleClass="ui-panelgrid-blank">
 					<p>
 						Duomenys nebus išsaugoti. <br /> Ar norite tęsti ?
 					</p>
 					<f:facet name="footer">
-						<p:commandButton value="Taip" onclick="history.go(-1);return false;" />
-						<p:commandButton value="Atšaukti" onclick="PF('confirmDialog').hide();" />
+						<p:commandButton value="Taip"
+							action="#{applicationMB.goBack}" immediate="true"/>
+						<p:commandButton value="Atšaukti"
+							onclick="PF('confirmDialog').hide();" />
 					</f:facet>
 				</h:panelGrid>
 			</p:panel>
 		</p:outputPanel>
 	</p:dialog>
+	<p:confirmDialog global="true">
+		<p:commandButton value="Taip" type="button"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		<p:commandButton value="Ne" type="button"
+			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+	</p:confirmDialog>
 </h:form>
-<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
-<p:dialog widgetVar="statusDialog" modal="false" draggable="false" closable="false" resizable="false" showHeader="false">
+<p:ajaxStatus onstart="PF('statusDialog').show()"
+	onsuccess="PF('statusDialog').hide()" />
+<p:dialog widgetVar="statusDialog" modal="false" draggable="false"
+	closable="false" resizable="false" showHeader="false">
 	<p:graphicImage url="/resources/images/ajax-loader.gif" />
 </p:dialog>
 </html>

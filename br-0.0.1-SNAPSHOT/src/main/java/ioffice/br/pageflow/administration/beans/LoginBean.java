@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PreDestroy;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -33,6 +32,9 @@ public class LoginBean extends BasicBean implements Serializable {
 
 	private String userName = null;
 	private String password = null;
+	private String email = null;
+	private String passwordToken = null;
+	private String passwordTokenRepeat = null;
 
 	List<User> userList;
 
@@ -42,8 +44,7 @@ public class LoginBean extends BasicBean implements Serializable {
 	@ManagedProperty(value = "#{authenticationManager}")
 	private AuthenticationManager authenticationManager = null;
 
-	public String login() {
-
+	public void login() {
 		if (performLogin()) {
 			MenuBean menuBean = (MenuBean) facesContext().getApplication().getELResolver().getValue(elContext(), null,
 					"menuMB");
@@ -55,19 +56,21 @@ public class LoginBean extends BasicBean implements Serializable {
 
 			((ConfigurableNavigationHandler) facesContext().getApplication().getNavigationHandler())
 					.performNavigation("welcome");
-
-			return null;
 		}
-		return null;
 	}
 
-	@PreDestroy
 	public void logout() {
 		SecurityContextHolder.getContext().setAuthentication(null);
 		// facesContext().getExternalContext().invalidateSession();
-		((ConfigurableNavigationHandler) facesContext().getApplication().getNavigationHandler())
-				.performNavigation("welcome?faces-redirect=true");
 
+		((ConfigurableNavigationHandler) facesContext().getApplication().getNavigationHandler())
+				.performNavigation("/pages/welcome?faces-redirect=true");
+	}
+
+	public void goTologin() {
+		SecurityContextHolder.getContext().setAuthentication(null);
+		((ConfigurableNavigationHandler) facesContext().getApplication().getNavigationHandler())
+				.performNavigation("/pages/login");
 	}
 
 	public AuthenticationManager getAuthenticationManager() {
@@ -121,5 +124,29 @@ public class LoginBean extends BasicBean implements Serializable {
 			return false;
 		}
 		return true;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPasswordToken() {
+		return passwordToken;
+	}
+
+	public void setPasswordToken(String passwordToken) {
+		this.passwordToken = passwordToken;
+	}
+
+	public String getPasswordTokenRepeat() {
+		return passwordTokenRepeat;
+	}
+
+	public void setPasswordTokenRepeat(String passwordTokenRepeat) {
+		this.passwordTokenRepeat = passwordTokenRepeat;
 	}
 }

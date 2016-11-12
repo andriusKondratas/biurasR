@@ -11,43 +11,55 @@
 	<ui:define name="content">
 		<h:form id="loginForm">
 			<div class="Container100">
-				<div class="Container100">
-					<div class="Wid50 OvHidden DispBlock MarAuto WidAutoOnMobile"
-						style="margin-top: 7%;">
-						<div class="Card ShadowEffect">
-							<div class="Container100">
-								<div class="Card OrangeBack White TexAlCenter Fs20 FontVoltBold">Prisijungti</div>
-							</div>
-
-							<div class="Container20 TexAlCenter Responsive100">
-								<h:graphicImage name="images/biurasR2a.png" styleClass="Wid80"
-									style="max-width:200px;" />
-							</div>
-
-							<div class="Container40 Responsive100">
-								<div class="Card TexAlCenter">
-									<p:messages showDetail="true" closable="false" showIcon="false"
-										showSummary="false"></p:messages>
-									<i class="icon-unlocked2 Fs60 TealGreen"></i>
-									<div class="EmptyBox10"></div>
-									<p:inputText styleClass="Wid90" placeholder="El.Paštas"
-										value="#{loginMB.userName}" />
-									<div class="EmptyBox10"></div>
-									<p:password styleClass="Wid90" placeholder="Slaptažodis"
-										value="#{loginMB.password}" />
-									<div class="Separator"></div>
-									<p:commandButton value="#{msg['common.login']}"
-										icon="fa fa-unlock" styleClass="GreenButton" update="@all"
-										 action="#{loginMB.login}" />
-									<div class="SeparatorFull"></div>
-									<span class="Fs14"> Pamiršote slaptažodį? <p:link
-											value="Pagalba" /></span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+            <div class="Container100">
+                <div class="Wid50 OvHidden DispBlock MarAuto WidAutoOnMobile" style="margin-top:7%;">
+                    <div class="Card ShadowEffect">
+                        <div class="Container100">
+                            <div class="Card OrangeBack White TexAlCenter Fs20 FontVoltBold">Prisijungti | Registruotis</div>
+                            <p:messages  id="msg" showDetail="true" autoUpdate="true" closable="false" showIcon="false" showSummary="true"></p:messages>
+                        </div>
+                         <div class="Container40 Responsive100">
+                            <div class="Card TexAlCenter">
+                                <i class="icon-unlocked2 Fs60 TealGreen"></i>
+                                <div class="EmptyBox10"></div>
+                                <p:inputText styleClass="Wid90" value="#{loginMB.userName}" placeholder="El-Paštas"/>
+                                <div class="EmptyBox10"></div>
+                                <p:password styleClass="Wid90" value="#{loginMB.password}" placeholder="Slaptažodis"/>
+                                <div class="Separator"></div>
+                                <p:commandButton  value="Prisijungti" icon="fa fa-unlock" styleClass="GreenButton" action="#{loginMB.login}" update="@this"/>
+                                <div class="SeparatorFull"></div>
+                                <span class="Fs14"> Pamiršote slaptažodį ? - <p:link value="Gaukite naują !"/></span>
+                            </div>
+                        </div>
+                        
+                        <div class="Container20 TexAlCenter Responsive100">
+                            <h:graphicImage name="images/logo.svg" styleClass="Wid80" library="volt-layout" style="max-width:200px;"/>
+                            <div class="EmptyBox10"></div>
+                            <span class="FontVoltSemiBold DispBlock Fs20">Registracijos nurodymai</span>
+                            <div class="EmptyBox10"></div>
+                            <span class="FontVoltRegular Fs12">Norint tapti registruotu sistemos naudotoju būtina pateikti galiojantį elektroninį paštą, į kurį bus atsiųsta prisijungimo informacija.. <br/>
+                                <p:link value="Daugiau informacijos"/>
+                            </span>
+                        </div>
+                       
+                        <div class="Container40 Responsive100">
+                            <div class="Card TexAlCenter">
+                                <i class="icon-user-add-outline Fs60 Blue"></i>
+                                <div class="EmptyBox10"></div>
+                                <p:inputText styleClass="Wid90" value="#{loginMB.email}" placeholder="El-Paštas"/>
+                                <div class="EmptyBox10"></div>
+                                <p:password styleClass="Wid90" value="#{loginMB.passwordToken}" placeholder="Slaptažodis"/>
+                                <div class="EmptyBox10"></div>
+                                <p:password styleClass="Wid90" value="#{loginMB.passwordTokenRepeat}" placeholder="Pakartoti slaptažodį"/>
+                                <div class="Separator"></div>
+                                <p:commandButton value="Registruotis" icon="fa fa-check-circle-o" styleClass="RedButton"/>
+                                <p:commandButton value="Daugiau" icon="fa fa-coffee" styleClass="BlueButton"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 		</h:form>
 	</ui:define>
 

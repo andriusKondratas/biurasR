@@ -52,9 +52,7 @@ public class BootstrapService {
 			}	
 		}
 		else{
-			createUser("test", "romas@namoprojektas.eu", "Romualdas", "Test");
-			createUser("test", "andrius@namoprojektas.eu", "Andrius", "Test");	
-			createUser("test", "test@namoprojektas.eu", "Test", "Test");
+			createUser("test", "pridavimai@gmail.com", "Andrius", "Test");
 		}
 	}
 
