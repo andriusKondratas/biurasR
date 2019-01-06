@@ -7,6 +7,22 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>br Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+
+	<profiles>
+		<profile>
+			<id>br</id>
+			<properties>
+				<jdbc.url>jdbc:oracle:thin:@localhost:1521:xe</jdbc.url>
+				<jdbc.username>br</jdbc.username>
+				<jdbc.password>br</jdbc.password>
+				<tomcat.server.host.port>localhost:8080</tomcat.server.host.port>
+				<environment.type>dev</environment.type>
+				<environment.name>Development</environment.name>
+			</properties>
+		</profile>
+	</profiles>
+
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.0.RELEASE</spring.version>
