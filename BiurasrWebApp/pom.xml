@@ -5,7 +5,7 @@
 	<artifactId>biurasr-webapp</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>BiurasR Webapp</name>
+	<name>BiurasrWebapp</name>
 	<url>http://maven.apache.org</url>
 
 	<profiles>
