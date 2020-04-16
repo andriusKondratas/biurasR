@@ -1,7 +1,5 @@
 ## Demo JSF Web App
-* Spring
-* Maven
-* Hibernate
-* Oracle XE
-* Hibernate
-* Prime Faces
+* Spring 4.2
+* Maven 3.3
+* Oracle XE 12.1
+* Prime Faces 5.3
